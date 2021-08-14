@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Reproductor de música</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="contenedor-shuffle-genero">
+        <button class="btn" id="shuffle" uk-tooltip="title:Reproducción aleatoria">
+            <img class="boton-random" src="random.png" alt=""></i>
+        </button>
+        <select class="form-control" id="select-genero"></select>
+    </div>
+    
+    <div class="contenedor-cover">
+        <img class="cover" id="img-song">
+    </div>
+    
+    <div class="contenedor-titulo">
+        <span class="truncate" id="title-song"></span>
+    </div>
+    
+    <div class="contenedor-player">
+        <audio id="player" controls="" controlsList="nodownload"></audio>
+    </div>
+    
+    <div class="listgroup">
+        <ul class="list-group" id="playlist"></ul>
+    </div>
+
+    <!--jQuery-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--bootstrap-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+    <!--uikit-->
+
+    <script type="text/javascript" src="music.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+                getListGeneros();
+                getSongs();
+            }
+
+        );
+    </script>
+    <!--canciones-->
+    <script type="text/x-handlebars-template" id="temp_songs">
+
+        {{#each songs}}
+        <li class="list-group-item py-2 li-pista" id="{{id}}">
+            <span class="truncate" uk-tooltip="title: {{name}} - {{artist}}">{{name}} - {{artist}}</span>
+        </li>
+        {{/each}}
+    </script>
+    <!--géneros-->
+    <script type="text/x-handlebars-template" id="temp_generos">
+        {{#each generos}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+    </script>
+
+
+
+</body>
+
+</html>
